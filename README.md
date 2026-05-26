@@ -362,17 +362,31 @@ The platform assumes:
 
 # Limitations
 
-## Prototype Dependence
-Weak prototype definitions may reduce conceptual validity.
+## Semantic Ambiguity
 
-## Semantic Approximation
-Embeddings approximate meaning but may miss contextual nuance.
+Embeddings cannot fully capture nuance, sarcasm, or domain-specific language.
 
-## Threshold Sensitivity
-Different calibration choices may produce different QCA configurations.
+## Prototype Sensitivity
 
-## Small-N Instability
-Small datasets may produce unstable configurations.
+Results rely heavily on prototype definitions, and weak prototypes reduce conceptual validity.
+
+## Calibration Dependence
+
+- Threshold selection is partly subjective
+- Small threshold changes can significantly alter QCA results
+- Calibration may oversimplify semantic nuance
+- Default thresholds may not fit all datasets
+- Semantic similarity scores are not perfectly equivalent to theoretical meaning
+- Risk of overfitting thresholds to obtain desirable configurations
+
+## Small-N Sensitivity
+QCA methods can become unstable with small datasets or sparse configurations.
+
+## Limited Causal Inference
+The tool identifies configurational associations rather than definitive causal relationships.
+
+## Computational Simplification
+The current implementation simplifies some advanced QCA procedures and does not yet implement advanced Boolean minimization techniques.
 
 ---
 
@@ -392,8 +406,8 @@ Potential future extensions:
 - advanced Boolean minimization
 - automated threshold recommendation
 - multilingual language detection
+- Add text normalization to standardize informal expressions and remove redundant oral words.
 - PDF export support
-- collaborative workflows
 - LLM-assisted prototype generation
 
 ---
