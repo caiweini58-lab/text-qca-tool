@@ -218,7 +218,7 @@ Example:
 
 | case_id | text | outcome |
 |---|---|---|
-| 1 | Citizens express frustration about delays | 1 |
+| 1 | 我已经多次反映小区垃圾分类设施不足，希望政府尽快处理。 | 1 |
 
 ---
 
@@ -236,7 +236,7 @@ Example:
 
 | condition_name | prototype | type |
 |---|---|---|
-| dissatisfaction | Citizen expresses anger or frustration | condition |
+| dissatisfaction | The citizen expresses dissatisfaction anger or frustration | condition |
 
 ---
 
@@ -276,9 +276,8 @@ cos(E_text_i, E_prototype_j)
 
 Similarity scores are normalized into the [0,1] interval using min-max normalization.
 
-```math
-x_normalized =
-(x - x_min) / (x_max - x_min)
+```text
+normalized_score = (x - x_min) / (x_max - x_min)
 ```
 
 ---
@@ -287,18 +286,30 @@ x_normalized =
 
 ### Crisp-set Calibration
 
-```math
-Membership(x)=
+```text
+Membership(x) =
 1 if x ≥ threshold
 0 otherwise
 ```
 
 ### Fuzzy-set Calibration
 
-Supports:
-- full membership threshold
-- crossover threshold
-- full non-membership threshold
+```text
+If x ≥ full_membership:
+    membership = 1.0
+
+If x ≤ full_nonmembership:
+    membership = 0.0
+
+If x = crossover:
+    membership = 0.5
+
+If crossover < x < full_membership:
+    membership increases linearly from 0.5 to 1.0
+
+If full_nonmembership < x < crossover:
+    membership increases linearly from 0.0 to 0.5
+```
 
 ---
 
@@ -416,8 +427,6 @@ Potential future extensions:
 
 Recommended deployment platforms:
 - Streamlit Community Cloud
-- Hugging Face Spaces
-- Render
 
 ---
 
